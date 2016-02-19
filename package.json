@@ -1,0 +1,19 @@
+{
+  "name": "angular-kickstart",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^2.3.1",
+    "gulp-load-plugins": "^1.2.0",
+    "gulp-open": "^1.0.0",
+    "run-sequence": "^1.1.5",
+    "wiredep": "^3.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wws",
+  "license": "ISC"
+}
