@@ -6,8 +6,10 @@ var plugins = gulpLoadPlugins();
 var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
 var open = require('open');
+var args = require('get-gulp-args')();
 
 var bowerData = require('./bower.json');
+var buildEnv = args.env || args.buildEnv || 'dev';
 
 var paths = {
     scripts: [`${bowerData.appPath}/scripts/**/*.js`],
@@ -17,7 +19,25 @@ var paths = {
         files: [`${bowerData.appPath}/views/**/*.html`]
     }
 };
-gulp.task('watch', () => {
+
+var Logger = {
+    green: (text) => {
+        plugins.util.log(plugins.util.colors.green(text));
+    },
+    red: (text) => {
+        plugins.util.log(plugins.util.colors.red(text));
+    }
+};
+
+gulp.task('env', function(){
+    Logger.green(`=== Build env.js with env '${buildEnv}'`);
+    return gulp
+            .src(`./config/${buildEnv}.js`)
+            .pipe(plugins.rename('./env.js'))
+            .pipe(gulp.dest('app/scripts'))
+})
+
+gulp.task('watch', function() {
     gulp.watch(['./app/**/*.html'],function() {
         gulp.src('./app/**/*.html')
             .pipe(plugins.connect.reload());
