@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取用户信息</title>
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <h2>获取用户信息</h2>
+    用户ID:<input type="text" id="userid" value="2">
+    <button type="button" class="btn btn-info" id="btn">Get</button>
+    <hr>
+    <pre id="pre"></pre>
+    
+    <p>
+        建议在 <a href="/" target="_blank">/</a> 和 <a href="/fms/" target="_blank">/fms/</a> 可视化控制 <a href="/get_user/" target="_blank">/get_user/</a> 的返回值
+    </p>
+    <p>
+        相关文档：<a href="http://fms.help/quick-start.html" target="_blank">FMS 快速入门</a>
+    </p>
+
+
+    <script src="static/js/jquery.js"></script>
+    <script>
+$(function () {
+    $('#btn').on('click', function () {
+        $.ajax({
+            type: 'get',
+            url: '/get_user/',
+            data: {
+                id: $('#userid').val()
+            }
+        }).done(function (data) {
+            $('#pre').html(data)
+            data = $.parseJSON(data)
+            console.log(data)
+        })
+    })
+})
+    </script>
+
+<!--FMS
+<script src="/fms/?type=fms.js"></script>
+<script>
+fms.btn('获取成功', function () {
+    fms.res('/get_user/:ajax:get:ok')
+})
+fms.btn('获取失败', function () {
+    fms.res('/get_user/:ajax:get:err')
+})
+</script>
+FMS-->
+
+</body>
+</html>

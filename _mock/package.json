@@ -1,0 +1,15 @@
+{
+  "name": "angular-kickstart-mock",
+  "version": "1.0.0",
+  "description": "mock",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wws",
+  "license": "ISC",
+  "devDependencies": {
+    "fms": "0.0.31",
+    "mockjs": "^1.0.0"
+  }
+}

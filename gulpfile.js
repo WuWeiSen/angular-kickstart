@@ -7,6 +7,7 @@ var wiredep = require('wiredep').stream;
 var runSequence = require('run-sequence');
 var open = require('open');
 var args = require('get-gulp-args')();
+var proxy = require('proxy-middleware');
 
 var bowerData = require('./bower.json');
 var buildEnv = args.env || args.buildEnv || 'dev';
@@ -64,9 +65,26 @@ gulp.task('start:server', function() {
         livereload: true,
         // Change this to '0.0.0.0' to access the server from outside.
         port: 9500,
+        middleware: function(connect, opts) {
+            var middlewares = [];
+            var url = require('url');
+            var proxy = require('proxy-middleware');
+            var msPort = args.msPort || 3000;
+
+            var mockServerProxy = function() {
+                var proxyUrl = `http://127.0.0.1:${ args.msgPort || 3000 }`
+                var proxyOptions = url.parse(proxyUrl);
+                Logger.green(`Mock Server：${proxyUrl}`);
+                proxyOptions.route = '/mockapi';
+                return proxy(proxyOptions);
+            };
+
+            middlewares.push(mockServerProxy());
+
+            return middlewares;
+        }
     });
 });
-
 
 gulp.task('serve', function(cb) {
     runSequence('open:client', 'watch', cb);

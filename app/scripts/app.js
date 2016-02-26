@@ -13,6 +13,6 @@ angular.module('angularKickstart', ['ui.router'])
 
     $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
-        $state.go('not_found');
+        $state.go('hello');
     });
 })

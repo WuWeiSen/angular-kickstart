@@ -4,6 +4,7 @@
   "description": "",
   "main": "gulpfile.js",
   "devDependencies": {
+    "fms": "0.0.31",
     "get-gulp-args": "0.0.1",
     "gulp": "^3.9.1",
     "gulp-connect": "^2.3.1",
@@ -11,6 +12,7 @@
     "gulp-open": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-util": "^3.0.7",
+    "proxy-middleware": "^0.15.0",
     "run-sequence": "^1.1.5",
     "wiredep": "^3.0.0"
   },

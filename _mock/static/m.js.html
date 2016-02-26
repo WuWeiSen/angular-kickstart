@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>m.js</title>
+</head>
+<body>
+
+<form action="/login/" method="post">
+    <label>
+        Username:<input name="username" type="text" >
+        <br>
+        Password:<input name="password" type="password" >
+        <br>
+        <button type="submit">Submit</button>
+    </label>
+</form>
+
+请点击页面右下角的灰色圆圈控制 AJAX 结果
+
+<script src="/static/js/jquery.js"></script>
+<script type="text/javascript">
+$(function () {
+    $('form').on('submit', function () {
+        var $this = $(this)
+        $.ajax({
+            type: $this.attr('method'),
+            url: $this.attr('action'),
+            data: $this.serializeArray(),
+            dataType: 'json'
+        }).done(function (data) {
+            if (data.status === 'success') {
+                alert('ok')
+            }
+            else {
+                alert(data.msg)
+            }
+        })
+        return false
+    })
+})
+</script>
+<!--FMS
+    你可以将代码包裹在 
+    &lt;!--FMS 和 --FMS&gt; 中，他会因为 <a href="http://fms.help/run.html#settings.staticReplace">staticReplace</a> 而删除 <code>&lt;!--FMS</code> <code>FMS--&gt;</code>
+    <hr>
+    这些代码就只会在 FMS 中显示，在后端正式环境中就是注释    
+FMS-->
+<script src="/fms/?m.js"></script>
+<script>
+fms.btn('默认样式', function () {
+
+})
+fms.btn('主要','primary', function () {
+
+})
+fms.btn('成功','success', function () {
+
+})
+fms.btn('失败','danger', function () {
+
+})
+fms.btn('信息','info', function () {
+
+})
+fms.btn('警告','warning', function () {
+
+})
+
+fms.hr()
+
+fms.btn('控制 /get_user/ 成功', 'success', function () {
+    fms.res('/get_user/`ajax`get`ok')
+})
+
+fms.btn('控制 /get_user/ 失败', 'danger', function () {
+    fms.res('/get_user/`ajax`get`err')
+})
+
+fms.hr()
+
+fms.btn('登录成功','success', function ($) {
+
+    fms.res('/login/`ajax`post`ok')
+
+    $('[name=username]').val('nimo')
+    $('[name=password]').val('12345')
+    $('button[type=submit]').trigger('click')
+})
+fms.btn('登录失败','danger', function () {
+    fms.res('/login/`ajax`post`err')
+
+    $('[name=username]').val('fms')
+    $('[name=password]').val('12345')
+    $('button[type=submit]').trigger('click')
+})
+
+</script>
+</body>
+</html>

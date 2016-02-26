@@ -9,8 +9,8 @@
         })
         .factory('AppModel', function($http, FULL_API_URL) {
             return {
-                logout: function() {
-                    return $http.post(FULL_API_URL('/sessions/logout'), {}, {
+                getUser: function() {
+                    return $http.get(FULL_API_URL('/user'), {
                         responseType: 'json'
                     });
                 },

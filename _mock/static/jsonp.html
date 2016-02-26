@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模拟 jsonp</title>
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+<body class="container">
+    <input type="text" id="userid" value="2">
+    <button type="button" class="btn btn-info" id="btn">Get JSONP</button>
+    <p>
+        相关文档：<a href="http://fms.help/run.html#settins.ajax.dataType" target="_blank">sttings.ajax.dataType</a>
+    </p>
+    <pre id="pre"></pre>
+
+    <script src="/static/js/jquery.js"></script>
+    <script>
+$(function () {
+    $('#btn').on('click', function () {
+        $.ajax({
+            type: 'get',
+            url: '/jsonp/',
+            dataType: 'jsonp',
+            data: {
+                id: $('#userid').val()
+            }
+        }).done(function (data) {
+            if (data.status === 'success') {
+                $('#pre').html('Name is ' + data.name)
+            }
+            else {
+                $('#pre').html('Error: ' + data.msg)
+            }
+            
+        })
+    })
+})
+    </script>
+
+<!--FMS
+<script src="/fms/?type=fms.js"></script>
+<script>
+fms.btn('获取成功', function () {
+    fms.res('/get_user/`ajax`get`ok')
+})
+fms.btn('获取失败', function () {
+    fms.res('/get_user/`ajax`get`err')
+})
+</script>
+FMS-->
+
+</body>
+</html>
