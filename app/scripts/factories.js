@@ -10,7 +10,7 @@
         .factory('AppModel', function($http, FULL_API_URL) {
             return {
                 getUser: function() {
-                    return $http.get(FULL_API_URL('/user'), {
+                    return $http.get(FULL_API_URL('/user'),{}, {
                         responseType: 'json'
                     });
                 },

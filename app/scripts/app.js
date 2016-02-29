@@ -1,4 +1,7 @@
-angular.module('angularKickstart', ['ui.router'])
+angular.module('angularKickstart', [
+    'ui.router',
+    'ngResource'
+    ])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
         .state('not_found', {

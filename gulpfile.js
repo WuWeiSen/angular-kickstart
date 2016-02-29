@@ -8,6 +8,7 @@ var runSequence = require('run-sequence');
 var open = require('open');
 var args = require('get-gulp-args')();
 var proxy = require('proxy-middleware');
+var gulpif = require('gulp-if');
 
 var bowerData = require('./bower.json');
 var buildEnv = args.env || args.buildEnv || 'dev';
@@ -54,7 +55,7 @@ gulp.task('bower', function () {
     .pipe(gulp.dest(bowerData.appPath));
 });
 
-gulp.task('open:client', ['start:server'], function() {
+gulp.task('open:client', ['bower', 'start:server'], function() {
     open('http://localhost:9500');
 });
 
@@ -88,4 +89,17 @@ gulp.task('start:server', function() {
 
 gulp.task('serve', function(cb) {
     runSequence('open:client', 'watch', cb);
+});
+
+
+gulp.task('build',  function() {
+    return gulp.src(paths.views.main)
+        .pipe(plugins.useref())
+        .pipe(gulpif('*.js', plugins.ngAnnotate()))
+        .pipe(gulpif('*.js', plugins.uglify()))
+        .pipe(gulpif('*.css', plugins.minifyCss({ keepSpecialComments: false })))
+        .pipe(gulpif('*.js', plugins.rev()))
+        .pipe(gulpif('*.css', plugins.rev()))
+        .pipe(plugins.revReplace())
+        .pipe(gulp.dest('dist'));
 });

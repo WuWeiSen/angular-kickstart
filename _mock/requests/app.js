@@ -1,6 +1,7 @@
 var $ = require('fms');
 var user = require('../response-data/user');
 var systemMenus = require('../response-data/system_menus');
+var address = require('../response-data/address');
 
 $.ajax({
     title: '用户',
@@ -25,6 +26,20 @@ $.ajax({
         ok: function() {
             return {
                 systemMenus: systemMenus
+            };
+        }
+    }
+});
+
+$.ajax({
+    title: '更新地址',
+    url: '/addresses/:id',
+    type: 'PUT',
+    dataType: 'json',
+    res: {
+        ok: function() {
+            return {
+                address: address
             };
         }
     }

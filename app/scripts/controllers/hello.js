@@ -2,11 +2,17 @@
 
     angular.module('angularKickstart')
 
-    .controller('HelloController', function($scope, AppModel) {
-        $scope.helloText = "hello world";
+    .controller('HelloController', function($scope, AppModel, AddressModel) {
         $scope.getUser = function(){
-            AppModel.getUser(function(response){
-                alert(response);
+            AppModel.getUser().then(function(response){
+                alert(response.data.user.name);
+            },function(err){
+                alert(err);
+            });
+        }
+        $scope.updateAdderss = function(){
+            AddressModel.update({ id: 1 }, {name: 'wws'}, function(response){
+                alert(response.address.username);
             },function(err){
                 alert(err);
             });
