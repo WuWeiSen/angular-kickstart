@@ -1,6 +1,7 @@
 angular.module('angularKickstart', [
     'ui.router',
-    'ngResource'
+    'ngResource',
+    'oc.lazyLoad'
     ])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -12,10 +13,26 @@ angular.module('angularKickstart', [
             url: '/hello',
             controller: 'HelloController',
             templateUrl: 'views/hello.html'
+        })
+        .state('city', {
+            url: '/city',
+            controller: 'CityController',
+            templateUrl: 'views/city.html',
+            resolve: {
+                load: ['$ocLazyLoad',
+                    function($ocLazyLoad) {
+                        return lazyDeferred = $ocLazyLoad.load([{
+                            files: [
+                                './styles/css/city.css'
+                            ]
+                        }]);
+                    }
+                ]
+            }
         });
 
     $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
-        $state.go('hello');
+        $state.go('city');
     });
 })
