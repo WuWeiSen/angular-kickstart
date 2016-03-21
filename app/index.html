@@ -1,11 +1,14 @@
 <!doctype html>
 <html ng-app="angularKickstart">
   <head>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/styles/css/common.css">
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/sweetalert/dist/sweetalert.css" />
     <!-- endbower -->
   </head>
   <body>
-    <div ui-view>
+    <div ui-view class="p15">
     </div>
     <!-- build:js scripts/main.js -->
     <!-- bower:js -->
@@ -17,12 +20,16 @@
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/ocLazyLoad/dist/ocLazyLoad.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="bower_components/ngSweetAlert/SweetAlert.js"></script>
     <!-- endbower -->
     <script src="scripts/app.js"></script>
     <script src="scripts/factories.js"></script>
     <script src="scripts/env.js"></script>
     <script src="scripts/controllers/hello.js"></script>
     <script src="scripts/controllers/city.js"></script>
+    <script src="scripts/directives/city.js"></script>
     <!-- endbuild -->
   </body>
 </html>

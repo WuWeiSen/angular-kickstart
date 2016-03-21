@@ -32,5 +32,20 @@
                 }
             });
         })
+        .factory('CityModel', function($resource, FULL_API_URL) {
+            return $resource(FULL_API_URL('/global_hot_cities'), null, {
+                getGlobalHotCities: {
+                    method: 'GET'
+                },
+                queryPlateCities: {
+                    method: 'GET',
+                    url: FULL_API_URL('/plate_cities')
+                },
+                queryGlobalCities: {
+                    method: 'POST',
+                    url: FULL_API_URL('/global_cities/search')
+                }
+            });
+        })
 
 })(window, window.angular);

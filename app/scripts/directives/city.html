@@ -1,26 +1,27 @@
+<div>
 <input type="text"  id="etbcity-id{{ inputId }}" ng-model="value.name" autocomplete="off" class="form-control" placeholder="{{config.placeholder}}" ng-click="showPanel(value.name)" ng-change="searchCity(value.name)">
 <div class="etb-city-body">
     <div class="etb-city" ng-show="isShow('selectPanel')">
-        <tabset justified="true">
-            <tab heading="热门城市">
+        <uib-tabset justified="true">
+            <uib-tab heading="热门城市">
                 <div class="hot-city-tab">
                     <div class="etb-city-panel">
                         <header><span class="title">国内热门</span></header>
                         <ul class="row list-style-none host-city-ul">
-                            <li class="col-md-2" ng-repeat="chinaCity in chinaHotCities">
-                                <a title="{{chinaCity.name}}" ng-click="onSelect(chinaCity)">{{chinaCity.name}}</a>
+                            <li class="col-sm-2" ng-repeat="chinaCity in chinaHotCities">
+                                <span title="{{chinaCity.name}}" ng-click="onSelect(chinaCity)">{{chinaCity.name}}</span>
                             </li>
                         </ul>
                         <header><span class="title">国际热门</span></header>
                         <ul class="row list-style-none host-city-ul">
-                            <li class="col-md-2" ng-repeat="abroadCity in abroadHotCities">
-                                <a title="{{abroadCity.name}}" ng-click="onSelect(abroadCity)">{{abroadCity.name}}</a>
+                            <li class="col-sm-2" ng-repeat="abroadCity in abroadHotCities">
+                                <span title="{{abroadCity.name}}" ng-click="onSelect(abroadCity)">{{abroadCity.name}}</span>
                             </li>
                         </ul>
                     </div>
                 </div>
-            </tab>
-            <tab heading="国内城市" ng-click="showCitise(PLATES.CHINA, currentTab['china']['index'], 'china', currentTab['china']['cacheIndex'])">
+            </uib-tab>
+            <uib-tab heading="国内城市" ng-click="showCitise(PLATES.CHINA, currentTab['china']['index'], 'china', currentTab['china']['cacheIndex'])">
                 <div>
                     <header>
                         <ul class="index-ul list-style-none p0">
@@ -49,19 +50,19 @@
                     </header>
                     <ul class="row list-style-none city-name-ul">
                         <div ng-repeat="chinaCity in citiesCollection.china">
-                            <li class="col-md-1 city-index">
+                            <li class="col-sm-1 city-index">
                                 {{ chinaCity.index }}
                             </li>
-                            <ul class="col-md-11">
-                                <li class="col-md-2" ng-repeat="city in chinaCity.cities">
-                                    <a title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</a>
+                            <ul class="col-sm-11">
+                                <li class="col-sm-2" ng-repeat="city in chinaCity.cities">
+                                    <span title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</span>
                                 </li>
                             </ul>
                         </div>
                     </ul>
                 </div>
-            </tab>
-            <tab heading="亚洲" ng-click="showCitise(PLATES.ASIA, currentTab['asia']['index'], 'asia', currentTab['asia']['cacheIndex'])">
+            </uib-tab>
+            <uib-tab heading="亚洲" ng-click="showCitise(PLATES.ASIA, currentTab['asia']['index'], 'asia', currentTab['asia']['cacheIndex'])">
                 <div>
                     <header>
                         <ul class="index-ul list-style-none p0">
@@ -90,19 +91,19 @@
                     </header>
                     <ul class="row list-style-none city-name-ul">
                         <div ng-repeat="asiaCity in citiesCollection.asia">
-                            <li class="col-md-1">
+                            <li class="col-sm-1">
                                 {{ asiaCity.index }}
                             </li>
-                            <ul class="col-md-11">
-                                <li class="col-md-2" ng-repeat="city in asiaCity.cities">
-                                    <a title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</a>
+                            <ul class="col-sm-11">
+                                <li class="col-sm-2" ng-repeat="city in asiaCity.cities">
+                                    <span title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</span>
                                 </li>
                             </ul>
                         </div>
                     </ul>
                 </div>
-            </tab>
-            <tab heading="欧洲" ng-click="showCitise(PLATES.EUROPE, currentTab['europe']['index'], 'europe', currentTab['europe']['cacheIndex'])">
+            </uib-tab>
+            <uib-tab heading="欧洲" ng-click="showCitise(PLATES.EUROPE, currentTab['europe']['index'], 'europe', currentTab['europe']['cacheIndex'])">
                 <div>
                     <header>
                         <ul class="index-ul list-style-none p0">
@@ -131,19 +132,19 @@
                     </header>
                     <ul class="row list-style-none city-name-ul">
                         <div ng-repeat="europeCity in citiesCollection.europe">
-                            <li class="col-md-1">
+                            <li class="col-sm-1">
                                 {{ europeCity.index }}
                             </li>
-                            <ul class="col-md-11">
-                                <li class="col-md-2" ng-repeat="city in europeCity.cities">
-                                    <a title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</a>
+                            <ul class="col-sm-11">
+                                <li class="col-sm-2" ng-repeat="city in europeCity.cities">
+                                    <span title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</span>
                                 </li>
                             </ul>
                         </div>
                     </ul>
                 </div>
-            </tab>
-            <tab heading="美洲" ng-click="showCitise(PLATES.AMERICA, currentTab['america']['index'], 'america', currentTab['america']['cacheIndex'])">
+            </uib-tab>
+            <uib-tab heading="美洲" ng-click="showCitise(PLATES.AMERICA, currentTab['america']['index'], 'america', currentTab['america']['cacheIndex'])">
                 <div>
                     <header>
                         <ul class="index-ul list-style-none p0">
@@ -172,19 +173,19 @@
                     </header>
                     <ul class="row list-style-none city-name-ul">
                         <div ng-repeat="americaCity in citiesCollection.america">
-                            <li class="col-md-1">
+                            <li class="col-sm-1">
                                 {{ americaCity.index }}
                             </li>
-                            <ul class="col-md-11">
-                                <li class="col-md-2" ng-repeat="city in americaCity.cities">
-                                    <a title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</a>
+                            <ul class="col-sm-11">
+                                <li class="col-sm-2" ng-repeat="city in americaCity.cities">
+                                    <span title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</span>
                                 </li>
                             </ul>
                         </div>
                     </ul>
                 </div>
-            </tab>
-            <tab heading="非洲" ng-click="showCitise(PLATES.AFRICA, currentTab['africa']['index'], 'africa', currentTab['africa']['cacheIndex'])">
+            </uib-tab>
+            <uib-tab heading="非洲" ng-click="showCitise(PLATES.AFRICA, currentTab['africa']['index'], 'africa', currentTab['africa']['cacheIndex'])">
                 <div>
                     <header>
                         <ul class="index-ul list-style-none p0">
@@ -213,19 +214,19 @@
                     </header>
                     <ul class="row list-style-none city-name-ul">
                         <div ng-repeat="africaCity in citiesCollection.africa">
-                            <li class="col-md-1">
+                            <li class="col-sm-1">
                                 {{ africaCity.index }}
                             </li>
-                            <ul class="col-md-11">
-                                <li class="col-md-2" ng-repeat="city in africaCity.cities">
-                                    <a title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</a>
+                            <ul class="col-sm-11">
+                                <li class="col-sm-2" ng-repeat="city in africaCity.cities">
+                                    <span title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</span>
                                 </li>
                             </ul>
                         </div>
                     </ul>
                 </div>
-            </tab>        
-            <tab heading="大洋洲" ng-click="showCitise(PLATES.GREATAMERICA, currentTab['greatAmerica']['index'], 'greatAmerica', currentTab['greatAmerica']['cacheIndex'])">
+            </uib-tab>        
+            <uib-tab heading="大洋洲" ng-click="showCitise(PLATES.GREATAMERICA, currentTab['greatAmerica']['index'], 'greatAmerica', currentTab['greatAmerica']['cacheIndex'])">
                 <div>
                     <header>
                         <ul class="index-ul list-style-none p0">
@@ -254,23 +255,24 @@
                     </header>
                     <ul class="row list-style-none city-name-ul">
                         <div ng-repeat="greatAmericaCity in citiesCollection.greatAmerica">
-                            <li class="col-md-1">
+                            <li class="col-sm-1">
                                 {{ greatAmericaCity.index }}
                             </li>
-                            <ul class="col-md-11">
-                                <li class="col-md-2" ng-repeat="city in greatAmericaCity.cities">
-                                    <a title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</a>
+                            <ul class="col-sm-11">
+                                <li class="col-sm-2" ng-repeat="city in greatAmericaCity.cities">
+                                    <span title="{{ city.name }}" ng-click="onSelect(city)">{{ city.name }}</span>
                                 </li>
                             </ul>
                         </div>
                     </ul>
                 </div>
-            </tab>
-        </tabset>
+            </uib-tab>
+        </uib-tabset>
     </div>
     <div class="select-parent-panel" ng-show="isShow('searchPanel')">
     <div class="select-etb-city-panel form-control" >
         <span ng-repeat="searchCity in searchCities" title="{{searchCity.showname}}"  ng-click="onSelect(searchCity)">{{searchCity.showname}}</span>
     </div>
     </div>
+</div>
 </div>

@@ -2,8 +2,7 @@
 
     angular.module('angularKickstart')
 
-    .controller('CityController', function($scope) {
-        $scope.fromCity = null;
+    .controller('DirectivesController', function($scope) {
     })
 
 })(window, window.angular);

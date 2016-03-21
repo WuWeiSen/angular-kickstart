@@ -30,3 +30,4 @@ fms.run({
 
 // 数据入口
 require('./requests/app');
+require('./requests/city');

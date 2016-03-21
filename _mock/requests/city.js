@@ -1,4 +1,8 @@
 var $ = require('fms');
+var hotCity = require('../response-data/global_hot_city');
+var plateCities = require('../response-data/plate_cities');
+var searchCities = require('../response-data/search_cities');
+
 
 $.ajax({
     title: '获取全球热门城市',
@@ -8,7 +12,7 @@ $.ajax({
     res: {
         ok: function() {
             return {
-                data: user('wws')
+                data: hotCity
             };
         }
     }
@@ -20,9 +24,9 @@ $.ajax({
     type: 'GET',
     dataType: 'json',
     res: {
-        ok: function() {
+        ok: function(request) {
             return {
-                data: systemMenus
+                data: plateCities(request.query)
             };
         }
     }
@@ -31,12 +35,12 @@ $.ajax({
 $.ajax({
     title: '搜索全球的城市',
     url: '/global_cities/search',
-    type: 'GET',
+    type: 'POST',
     dataType: 'json',
     res: {
         ok: function() {
             return {
-                data: address
+                data: searchCities
             };
         }
     }

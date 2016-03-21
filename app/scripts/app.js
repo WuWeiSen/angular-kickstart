@@ -1,7 +1,9 @@
 angular.module('angularKickstart', [
     'ui.router',
     'ngResource',
-    'oc.lazyLoad'
+    'oc.lazyLoad',
+    'ui.bootstrap',
+    'oitozero.ngSweetAlert'
     ])
 .config(function($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -14,10 +16,10 @@ angular.module('angularKickstart', [
             controller: 'HelloController',
             templateUrl: 'views/hello.html'
         })
-        .state('city', {
-            url: '/city',
-            controller: 'CityController',
-            templateUrl: 'views/city.html',
+        .state('index', {
+            url: '/',
+            controller: 'DirectivesController',
+            templateUrl: 'views/directives.html',
             resolve: {
                 load: ['$ocLazyLoad',
                     function($ocLazyLoad) {
@@ -33,6 +35,6 @@ angular.module('angularKickstart', [
 
     $urlRouterProvider.otherwise(function($injector) {
         var $state = $injector.get("$state");
-        $state.go('city');
+        $state.go('index');
     });
 })

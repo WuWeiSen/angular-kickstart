@@ -2,19 +2,19 @@
 
     angular.module('angularKickstart')
 
-    .controller('HelloController', function($scope, AppModel, AddressModel) {
+    .controller('HelloController', function($scope, AppModel, AddressModel, SweetAlert) {
         $scope.getUser = function(){
             AppModel.getUser().then(function(response){
-                alert(response.data.user.name);
+                SweetAlert.swal("姓名 ：" + response.data.user.name);
             },function(err){
-                alert(err);
+                SweetAlert.swal("请先启动MOCK");
             });
         }
         $scope.updateAdderss = function(){
             AddressModel.update({ id: 1 }, {name: 'wws'}, function(response){
-                alert(response.address.username);
+                SweetAlert.swal("地址 ：" + response.address.address);
             },function(err){
-                alert(err);
+                SweetAlert.swal("请先启动MOCK");
             });
         }
     })

@@ -1,8 +1,9 @@
 ## MOCK安装与启动 （进入到_mock文件下）
 
-npm install
-```
+    npm install
+
 > 请务必安装 nodemon 启动项目提高调试效率 `npm install nodemon -g`
+
 
 ```shell
 nodemon -w fms.js fms.js
@@ -23,4 +24,9 @@ ps：修改后，需要自己手动重启
 - gulp serve
 
 
+## 自定义指令
+### 1.城市控件
+支持选择、搜索城市，目前搜索城市的结果是返回固定数组
+
+![city](./app/images/city.png)
 

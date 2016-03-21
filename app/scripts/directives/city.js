@@ -1,27 +1,26 @@
-define([
-    'text!./etb-city.html'
-], function(tpl) {
+(function(window, angular) {
     'use strict';
     var PLATES = {
-            ASIA: 0,          // 亚洲
-            EUROPE: 1,        // 欧洲
-            AMERICA: 2,       // 美洲
-            AFRICA: 3,        // 非洲
-            GREATAMERICA: 4,  // 大美洲
-            CHINA: 99         // 国内
-        },
-        INDEXSTR = {
-            FIRST: 'A,B,C,D',
-            SECOND: 'E,F,G,H',
-            THIRD: 'I,J,K,L',
-            FOURTH: 'M,N,O,P',
-            FIFTH: 'Q,R,S,T',
-            SIXTH: 'U,V,W,X',
-            SEVENTH: 'Y,Z'
-        },
-        directive = function($compile, $document, ErcCityStore) {
-            return {
+        ASIA: 0,          // 亚洲
+        EUROPE: 1,        // 欧洲
+        AMERICA: 2,       // 美洲
+        AFRICA: 3,        // 非洲
+        GREATAMERICA: 4,  // 大美洲
+        CHINA: 99         // 国内
+    },
+    INDEXSTR = {
+        FIRST: 'A,B,C,D',
+        SECOND: 'E,F,G,H',
+        THIRD: 'I,J,K,L',
+        FOURTH: 'M,N,O,P',
+        FIFTH: 'Q,R,S,T',
+        SIXTH: 'U,V,W,X',
+        SEVENTH: 'Y,Z'
+    };
+    angular.module('angularKickstart').directive('goAddressCity', function($compile, $document, CityModel, SweetAlert) {
+        return {
                 restrict: 'AE',
+                templateUrl: './scripts/directives/city.html',
                 replace: true,
                 scope: {
                     value: '='
@@ -29,8 +28,8 @@ define([
                 compile: function(tElement, tAttrs) {
 
                     return function link($scope, element, attrs) {
-                        var $html = $compile(tpl)($scope);
-                        element.replaceWith($html);
+                        // var $html = $compile(tpl)($scope);
+                        // element.replaceWith($html);
                         $scope.config = {};
                         $scope.config['currentPanelName'] = '';
                         $scope.config['isSelect'] = false;
@@ -148,10 +147,11 @@ define([
                             $scope.currentTab[plateName]['cacheIndex'] = cacheIndex;
                             $scope.showCitise(code, currentTab, plateName, cacheIndex);
                         }
-                        ErcCityStore.getGlobalHotCities({}).$promise.then(function(response) {
+                        CityModel.getGlobalHotCities({}).$promise.then(function(response) {
                             $scope.chinaHotCities = response.data.chinaHotCity;
                             $scope.abroadHotCities = response.data.abroadHotCity;
                         }, function(error) {
+                            SweetAlert.swal("请先启动MOCK");
                         });
 
                         $scope.isShow = function(panelName) {
@@ -176,12 +176,13 @@ define([
                             $scope.config['isSelect'] = false;
                             $scope.config['isCopy'] = false;
                             if(!!keyword) {
-                                ErcCityStore.queryGlobalCities({
+                                CityModel.queryGlobalCities({
                                     keyword:keyword,
                                     limit: 20
                                 }).$promise.then(function(response) {
                                     $scope.searchCities = response.data;
                                 }, function(error) {
+                                    SweetAlert.swal("请先启动MOCK");
                                 });
                                 $scope.config['currentPanelName'] = 'searchPanel';
                              } else {
@@ -189,16 +190,17 @@ define([
                              }
                         }
                         $scope.showCitise = function(code, indexStr, plateName, cacheIndex) {
-                            if($scope.cacheCity[plateName][cacheIndex].length > 0 ){
+                            if($scope.cacheCity[plateName][cacheIndex] && $scope.cacheCity[plateName][cacheIndex].length > 0 ){
                                 $scope.citiesCollection[plateName] = $scope.cacheCity[plateName][cacheIndex];
                             }else {
-                                ErcCityStore.queryPlateCities({
+                                CityModel.queryPlateCities({
                                 code: code,
                                 indexStr: indexStr
                             }).$promise.then(function(response) {
                                 $scope.citiesCollection[plateName] = response.data;
                                 $scope.cacheCity[plateName][cacheIndex] = response.data;
                             }, function(error) {
+                                SweetAlert.swal("请先启动MOCK");
                             });
                             }
                         }
@@ -218,6 +220,5 @@ define([
                     };
                 }
             };
-        };
-    return ['$compile','$document','ErcCityStore', directive];
-});
+    });
+})(window, window.angular);
