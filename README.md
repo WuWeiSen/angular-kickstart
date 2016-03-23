@@ -30,3 +30,13 @@ ps：修改后，需要自己手动重启
 
 ![city](./app/images/city.png)
 
+## 自定义过滤器
+### 1.截断过滤器
+给一个字符串指定显示长度，截断过滤器将该字符串超过指定长度的字符用...代替
+
+![city](./app/images/filter-trim.png)
+
+### 2.数组分隔过滤器
+有别与js的数组join函数，该过滤器支持指定数组的某一属性进行分隔
+
+![city](./app/images/filter-array-join.png)
