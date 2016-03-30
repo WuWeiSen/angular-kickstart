@@ -4,6 +4,20 @@ var systemMenus = require('../response-data/system_menus');
 var address = require('../response-data/address');
 
 $.ajax({
+    title: '用$q访问该接口',
+    url: '/start_mock',
+    type: 'GET',
+    dataType: 'json',
+    res: {
+        ok: function() {
+            return {
+                start_mock: true
+            };
+        }
+    }
+});
+
+$.ajax({
     title: '用户',
     url: '/user',
     type: 'GET',

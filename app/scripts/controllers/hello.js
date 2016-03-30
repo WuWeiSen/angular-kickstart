@@ -17,6 +17,12 @@
                 SweetAlert.swal("请先启动MOCK");
             });
         }
+        var promise = AppModel.testMock();
+        promise.then(function(data){
+            SweetAlert.swal(data);
+        }, function(data) {
+            SweetAlert.swal(data);
+        })
     })
 
 })(window, window.angular);
